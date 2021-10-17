@@ -1,0 +1,171 @@
+body {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background: rgb(255, 255, 255);
+}
+
+.wrapper {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 90%;
+    min-width: 600px;
+    border: 5px black solid;
+}
+
+#library-title-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.library-title {
+    width: max-content;
+    height: max-content;
+    margin-left: auto;
+    font-size: 300%;
+}
+
+.current-library-title {
+    font-size: 50%;
+    vertical-align: middle;
+}
+
+#library-select {
+    padding: 20px;
+    font-size: 1.2rem;
+    margin: auto;
+}
+
+#book-display {
+    display: grid;
+    flex: 4;
+    padding: 20px;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fill, 100px);
+    grid-template-rows: repeat(auto-fill, 150px);
+    background: rgb(43, 76, 148);
+}
+
+.book {
+    background: rgb(148, 148, 148);
+    outline: rgb(255, 255, 255) 2px solid;
+    position: relative;
+}
+
+.remove-book-button {
+    background: none;
+    user-select: none;
+    font-family: cursive;
+    font-weight: bold;
+    font-size: .7rem;
+    border: none;
+    margin: 5%;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.521);
+    border-radius: 10px;
+    float: right;
+}
+
+.remove-book-button:hover {
+    box-shadow: 0px 0px 5px rgb(0, 0, 0);
+}
+
+.remove-book-button:active {
+    background: rgba(0, 0, 0, 0.404);
+}
+
+.title-and-author-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 100%;
+    text-align: center;
+}
+
+.book-title {
+    font-weight: bold;
+}
+
+.pages-and-read-wrapper {
+    display: flex;
+    font-size: 75%;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    user-select: none;
+}
+
+.book-read {
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.521);
+    border-radius: 2px;
+    padding: 5%;
+}
+
+.book-read:hover {
+    box-shadow: 0px 1px 3px rgb(0, 0, 0);
+}
+
+.book-read:active {
+    background: rgba(0, 0, 0, 0.404);
+}
+
+#interface {
+    background:rgb(94, 112, 192);
+    flex: 1;
+    padding: 2%;
+}
+
+#interface-title {
+    display: block;
+    width: max-content;
+    margin: 0 auto 4%;
+    padding: 2%;
+    background: rgb(43, 76, 148);
+    font-size: 1.5rem;
+    color: whitesmoke;
+}
+
+legend span.accessibility {
+    position:absolute;
+    left:-9999px;
+    width:100px;
+    height:auto;
+    overflow:hidden;
+}
+
+.interface-input-list-item {
+    width: max-content;
+    margin: 1%;
+}
+
+.interface-input-list-item:last-child {
+    margin-left: auto;
+    margin-right: 5%;
+}
+
+.interface-input-list-item label {
+    display: inline-block;
+    min-width: 80px;
+    font-weight: bold;
+}
+
+#library-input {
+    padding: 5px;
+    font-size: 1.2rem;
+    margin: auto;
+}
+
+#submit {
+    border-radius: 8px;
+    padding: 20%;
+}
+

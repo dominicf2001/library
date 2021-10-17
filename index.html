@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='reset.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js' defer></script>
+</head>
+<body>
+    <main class="wrapper">
+        <div id="library-title-wrapper">
+            <h1 class="library-title">Current Library:</h1>
+            <select name="library-select" id="library-select">
+                <option value="My Library">My Library</option>
+                <option value="My Library">myLibraryTwo</option>
+            </select>
+        </div>
+        
+        <section id="book-display">
+            <div data-Index="0" class="book">
+                <button class="remove-book-button">X</button>
+                <div class="title-and-author-wrapper">
+                    <h2 class="book-title"></h2>
+                    <h3 class="book-author"></h3>
+                </div>
+                <div class="pages-and-read-wrapper">
+                    <p class="book-pages">333</p>
+                    <p class="book-read">read</p>
+                </div>
+            </div>
+        </section>
+        <fieldset id="interface">
+            <legend><span class="accessibility">Interface</span></legend>
+            <h2 id="interface-title">Add a new book</h2>
+            <ol id="interface-input-list">
+                <li class="interface-input-list-item">
+                    <label for="title-input">Title:</label>
+                    <input id="title-input" type="text">
+                </li>
+                <li class="interface-input-list-item">
+                    <label for="author-input">Author:</label>
+                    <input id="author-input" type="text">
+                </li>
+                <li class="interface-input-list-item">
+                    <label for="pages-input">Pages:</label>
+                <input id="pages-input" type="text">
+                </li>
+                <li class="interface-input-list-item">
+                    <label for="read-input">Read:</label>
+                    <input id="read-input" type="checkbox">
+                </li>
+                <li class="interface-input-list-item">
+                    <select name="library-input" id="library-input">
+                        <option value="My Library">My Library</option>
+                        <option value="My Library">myLibraryTwo</option>
+                    </select>
+                </li>
+                <li class="interface-input-list-item">
+                    <button id="submit">Submit</button>
+                </li>
+            </ol>
+        </fieldset>
+        
+    </main>
+</body>
+</html>
