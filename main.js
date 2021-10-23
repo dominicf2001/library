@@ -15,44 +15,42 @@ bookElement.innerHTML =
     <p class="book-read"></p>
 </div>`;
 
-let allLibraries = [];
+allLibraries = [];
+class Library {
 
-const myLibrary = new Library('My Library');
-
-const myLibraryTwo = new Library('myLibraryTwo');
-
-function Library(name) {
-    this.name = name;
-    this.shelf = [];
-    allLibraries.push(this);
-}
-
-Library.prototype.displayBooks = function() {
-    bookDisplay.innerHTML = '';
-    bookDisplay.dataset.library = this.name;
-    
-    for (let i = 0; i <= (this.shelf.length - 1); i++) {
-        const currentBookObject = this.shelf[i];
-        const currentBookElement = bookElement.cloneNode(true);
-        
-        writeToBookElement(i, currentBookObject, currentBookElement, this);
-        bookDisplay.appendChild(currentBookElement);
+    constructor(name) {
+        this.name = name;
+        this.shelf = [];
+        allLibraries.push(this);
     }
-}
 
-function writeToBookElement(index, bookObject, bookElement, library) {
-    bookElement.querySelector('.book-title').textContent = `${bookObject.title}`;
-    bookElement.querySelector('.book-author').textContent = `${bookObject.author}`;
-    bookElement.querySelector('.book-pages').textContent = `${bookObject.pages}`;
-    let isBookRead = (bookObject.read)? 'read' : 'not read';
-    bookElement.querySelector('.book-read').textContent = isBookRead;
-    bookElement.querySelector('.remove-book-button').addEventListener('click', () => {
-        bookObject.removeBookFromLibrary(library);
-    });   
-    bookElement.querySelector('.book-read').addEventListener('click', () => {
-        bookObject.changeReadStatus();
-    });
-    bookElement.dataset.index = index;
+    displayBooks() {
+        bookDisplay.innerHTML = '';
+        bookDisplay.dataset.library = this.name;
+
+        for (let i = 0; i <= (this.shelf.length - 1); i++) {
+            const currentBookObject = this.shelf[i];
+            const currentBookElement = bookElement.cloneNode(true);
+            
+            this.writeToBookElement(i, currentBookObject, currentBookElement, this);
+            bookDisplay.appendChild(currentBookElement);
+        }
+    }
+
+    writeToBookElement(index, bookObject, bookElement, library) {
+        bookElement.querySelector('.book-title').textContent = `${bookObject.title}`;
+        bookElement.querySelector('.book-author').textContent = `${bookObject.author}`;
+        bookElement.querySelector('.book-pages').textContent = `${bookObject.pages}`;
+        let isBookRead = (bookObject.read)? 'read' : 'not read';
+        bookElement.querySelector('.book-read').textContent = isBookRead;
+        bookElement.querySelector('.remove-book-button').addEventListener('click', () => {
+            bookObject.removeBookFromLibrary(library);
+        });   
+        bookElement.querySelector('.book-read').addEventListener('click', () => {
+            bookObject.changeReadStatus();
+        });
+        bookElement.dataset.index = index;
+    }
 }
 
 librarySelect.addEventListener('change', () => {
@@ -62,43 +60,49 @@ librarySelect.addEventListener('change', () => {
     libraryObject.displayBooks();
 })
 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-}
+const myLibrary = new Library('My Library');
 
-Book.prototype.info = function() {
-    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}.`;
-}
+const myLibraryTwo = new Library('myLibraryTwo');
 
-Book.prototype.checkLibrary = function() {
-    let booksLibrary;
-    allLibraries.forEach(library => {
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+
+    info() {
+        return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}.`;
+    }
+
+    checkLibrary() {
+        let booksLibrary;
+        allLibraries.forEach(library => {
         if (library.shelf.includes(this)) {
             booksLibrary = library;
         }
-    });
-    return booksLibrary;
+        });
+        return booksLibrary;
+    }
+
+    addBookToLibrary(library) {
+        library.shelf.push(this);
+        library.displayBooks();
+    }
+
+    removeBookFromLibrary(library) {
+        const libraryIndex = library.shelf.indexOf(this);
+        library.shelf.splice(libraryIndex, 1);
+        library.displayBooks();
+    }
+
+    changeReadStatus() {
+        this.read = !this.read;
+        let library = this.checkLibrary();
+        library.displayBooks();
+    }
 }
-
- Book.prototype.addBookToLibrary = function(library) {
-    library.shelf.push(this);
-    library.displayBooks();
- }
-
- Book.prototype.removeBookFromLibrary = function(library) {
-    const libraryIndex = library.shelf.indexOf(this);
-    library.shelf.splice(libraryIndex, 1);
-    library.displayBooks();
- }
-
- Book.prototype.changeReadStatus = function() {
-    this.read = !this.read;
-    let library = this.checkLibrary();
-    library.displayBooks();
- }
 
 // BOOKS
 const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295', false);
